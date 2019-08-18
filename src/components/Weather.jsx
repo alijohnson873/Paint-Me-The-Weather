@@ -10,16 +10,17 @@ import snow from "../images/janjacobSnow.jpg";
 import tempest from "../images/tempest.jpg";
 import goghSun from "../images/vgoghsun.jpg";
 import rain from "../images/magritte.jpeg";
+import goghCloud from "../images/vgogh.jpg";
 
 class Weather extends Component {
   state = {
     weatherMain: "",
+    weatherDescription: "",
     temp: "",
     city: "",
     cityInput: "",
     country: "",
-    countryInput: "",
-    error: ""
+    countryInput: ""
   };
 
   handleChangeCity = event => {
@@ -53,19 +54,16 @@ class Weather extends Component {
         this.setState(
           {
             weatherMain: data.weather[0].main,
-            temp: data.main.temp
+            temp: data.main.temp,
+            weatherDescription: data.weather[0].description
           },
           console.log(data)
           // console.log(data.weather[0].main),
           // console.log(data.main.temp)
         )
       )
-      .catch(error => this.setState({ error: "error" }));
+      .catch(error => this.setState({ weatherMain: "Error" }));
   };
-
-  componentDidMount() {
-    this.fetchApi();
-  }
 
   convertTempUnit = k => {
     return Math.round(k - 273.15);
@@ -75,8 +73,8 @@ class Weather extends Component {
     let image;
     if (this.state.weatherMain === "Clear") {
       image = summer;
-    } else if (this.state.weatherMain === "Cloud") {
-      image = goyenCloud;
+    } else if (this.state.weatherMain === "Clouds") {
+      image = goghCloud;
     } else if (this.state.weatherMain === "Thunderstorm") {
       image = turnerStorm;
     } else if (this.state.weatherMain === "Rain") {
@@ -85,16 +83,18 @@ class Weather extends Component {
       image = snow;
     } else if (this.state.weatherMain === "Drizzle") {
       image = rain;
+    } else if (this.state.weatherMain === "Error") {
+      image = scream;
     } else {
-      image = tempest;
+      image = goyenCloud;
     }
     return `url(${image})`;
   };
 
   render() {
-    console.log(this.conditionalPaintingBackground());
+    // console.log(this.conditionalPaintingBackground());
     const displayWeather = this.state.city ? styles.mainText : styles.noText;
-    // const paintingBackground = `url("../images/goyencloud.jpg")`;
+
     return (
       <section
         style={{ backgroundImage: this.conditionalPaintingBackground() }}
@@ -121,7 +121,7 @@ class Weather extends Component {
           <h3>
             The Weather in {this.capitalise1stLetter(this.state.city)} is{" "}
             {this.convertTempUnit(this.state.temp)}&#8451; with{" "}
-            {this.state.weatherMain}
+            {this.state.weatherDescription}
           </h3>
           <h2 />
         </article>
