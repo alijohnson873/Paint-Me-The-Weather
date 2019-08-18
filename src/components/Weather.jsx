@@ -1,20 +1,27 @@
 import React, { Component } from "react";
+import InputForm from "../../src/components/Form";
 
 class Weather extends Component {
-  state = {};
+  state = { weather: "", city: "", country: "" };
 
   componentDidMount() {
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=inauthor:&maxResults=20&key:AIzaSyBzAhdlRZ9hd3aOVRKTUzZW9KX06ncoimM"
+      "https://api.openweathermap.org/data/2.5/weather?q=bristol,uk&appid=6df8b6decaded2790dd9bbf48af08d3a"
     )
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data =>
+        this.setState(
+          { weather: data.weather[0].main },
+          console.log(data.weather[0].main)
+        )
+      );
   }
 
   render() {
     return (
       <div>
-        <p>I am the weather</p>
+        <InputForm />
+        <h3>The Weather in Bath is ...</h3>
       </div>
     );
   }

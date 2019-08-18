@@ -7,7 +7,7 @@ class InputForm extends Component {
       <form>
         <input type="text" name="city" placeholder="City..." />
         <input type="text" name="country" placeholder="Country..." />
-        <button>Get Weather</button>
+        <button>Paint Me The Weather</button>
       </form>
     );
   }
