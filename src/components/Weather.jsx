@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import styles from "./Weather.module.scss";
 
+import scream from "../images/scream.jpg";
+import turnerClearSky from "../images/turnerclearsky.jpg";
+import goyenCloud from "../images/goyencloud.jpg";
+import turnerStorm from "../images/tunerstorm.jpg";
+import summer from "../images/sueratsummer.png";
+import snow from "../images/janjacobSnow.jpg";
+import tempest from "../images/tempest.jpg";
+import goghSun from "../images/vgoghsun.jpg";
+import rain from "../images/magritte.jpeg";
+
 class Weather extends Component {
   state = {
     weatherMain: "",
@@ -45,9 +55,9 @@ class Weather extends Component {
             weatherMain: data.weather[0].main,
             temp: data.main.temp
           },
-          //   console.log(data.name),
-          console.log(data.weather[0].main),
-          console.log(data.main.temp)
+          console.log(data)
+          // console.log(data.weather[0].main),
+          // console.log(data.main.temp)
         )
       )
       .catch(error => this.setState({ error: "error" }));
@@ -61,10 +71,34 @@ class Weather extends Component {
     return Math.round(k - 273.15);
   };
 
+  conditionalPaintingBackground = () => {
+    let image;
+    if (this.state.weatherMain === "Clear") {
+      image = summer;
+    } else if (this.state.weatherMain === "Cloud") {
+      image = goyenCloud;
+    } else if (this.state.weatherMain === "Thunderstorm") {
+      image = turnerStorm;
+    } else if (this.state.weatherMain === "Rain") {
+      image = rain;
+    } else if (this.state.weatherMain === "Snow") {
+      image = snow;
+    } else if (this.state.weatherMain === "Drizzle") {
+      image = rain;
+    } else {
+      image = tempest;
+    }
+    return `url(${image})`;
+  };
+
   render() {
-    //   const display
+    console.log(this.conditionalPaintingBackground());
+    const displayWeather = this.state.city ? styles.mainText : styles.noText;
+    // const paintingBackground = `url("../images/goyencloud.jpg")`;
     return (
-      <section className={styles.mainWrapper}>
+      <section
+        style={{ backgroundImage: this.conditionalPaintingBackground() }}
+      >
         <h1>Paint Me The Weather in...</h1>
         <form>
           <input
@@ -83,14 +117,13 @@ class Weather extends Component {
           />
           <button onClick={this.submitLocation}>Paint</button>
         </form>
-        <article className={styles.mainText}>
+        <article className={displayWeather}>
           <h3>
-            The Weather in {this.capitalise1stLetter(this.state.city)}, is...
-          </h3>
-          <h2>
+            The Weather in {this.capitalise1stLetter(this.state.city)} is{" "}
             {this.convertTempUnit(this.state.temp)}&#8451; with{" "}
             {this.state.weatherMain}
-          </h2>
+          </h3>
+          <h2 />
         </article>
       </section>
     );

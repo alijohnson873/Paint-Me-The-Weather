@@ -1,20 +1,20 @@
-article {
-  // color: white;
-  //   display: none;
-}
-
-form {
-  //   margin-bottom: 30px;
-  //   border: 1px solid red;
-  //   height: 30px;
+.noText {
+  display: none;
 }
 
 .mainText {
-  // color: red;
+  h3 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 25px;
+    margin: 0;
+  }
 }
 
 section {
-  background-image: url("../images/vgogh.jpg");
+  background-image: url("../images/goyencloud.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -24,12 +24,20 @@ section {
   //   border: 1px solid red;
   padding: 60px;
   text-align: center;
+  font-family: sans-serif;
+  color: white;
+}
 
-  h3 {
-    font-size: 30px;
-  }
-
-  h2 {
-    font-size: 50px;
+input {
+  border: 2px solid white;
+  margin: 20px;
+  padding: 5px;
+  background: transparent;
+  opacity: 0.9;
+  color: white;
+  border-radius: 8px;
+  &::placeholder {
+    color: white;
+    font-size: 13px;
   }
 }
