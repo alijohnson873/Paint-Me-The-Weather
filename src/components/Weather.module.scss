@@ -1,0 +1,35 @@
+article {
+  // color: white;
+  //   display: none;
+}
+
+form {
+  //   margin-bottom: 30px;
+  //   border: 1px solid red;
+  //   height: 30px;
+}
+
+.mainText {
+  // color: red;
+}
+
+section {
+  background-image: url("../images/vgogh.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  //   width: auto;
+
+  //   border: 1px solid red;
+  padding: 60px;
+  text-align: center;
+
+  h3 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 50px;
+  }
+}
