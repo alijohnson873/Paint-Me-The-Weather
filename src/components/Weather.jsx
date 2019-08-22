@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import styles from "./Weather.module.scss";
 
 import scream from "../images/scream.jpg";
-import turnerClearSky from "../images/turnerclearsky.jpg";
+// import turnerClearSky from "../images/turnerclearsky.jpg";
 import goyenCloud from "../images/goyencloud.jpg";
 import turnerStorm from "../images/tunerstorm.jpg";
 import summer from "../images/sueratsummer.png";
 import snow from "../images/janjacobSnow.jpg";
-import tempest from "../images/tempest.jpg";
-import goghSun from "../images/vgoghsun.jpg";
+// import tempest from "../images/tempest.jpg";
+// import goghSun from "../images/vgoghsun.jpg";
 import rain from "../images/magritte.jpeg";
 import goghCloud from "../images/vgogh.jpg";
 
@@ -31,13 +31,17 @@ class Weather extends Component {
   };
   submitLocation = event => {
     event.preventDefault();
-    this.setState({
-      city: this.state.cityInput,
-      country: this.state.countryInput,
-      cityInput: "",
-      countryInput: ""
-    });
-    this.fetchApi();
+    this.setState(
+      {
+        city: this.state.cityInput,
+        country: this.state.countryInput,
+        cityInput: "",
+        countryInput: ""
+      },
+      () => {
+        this.fetchApi();
+      }
+    );
   };
 
   capitalise1stLetter = string =>
@@ -57,9 +61,9 @@ class Weather extends Component {
             temp: data.main.temp,
             weatherDescription: data.weather[0].description
           },
-          console.log(data)
-          // console.log(data.weather[0].main),
-          // console.log(data.main.temp)
+          console.log(data),
+          console.log(data.weather[0].main),
+          console.log(data.main.temp)
         )
       )
       .catch(error => this.setState({ weatherMain: "Error" }));

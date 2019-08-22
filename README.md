@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Paint-Me-The-Weather
+
+Search for the weather in any city and get a painting of that weather. Created to practise using APIs.
 
 ## Available Scripts
 
