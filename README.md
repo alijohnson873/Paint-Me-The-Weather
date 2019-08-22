@@ -1,6 +1,8 @@
 ## Paint-Me-The-Weather
 
-Search for the weather in any city and get a painting of that weather. Created to practise using APIs.
+Search for the weather in any city and get a painting of that weather. Created to practise using REST APIs to fetch data.
+
+https://paint-me-the-weather.alicjohnson.co.uk/
 
 ## Available Scripts
 
