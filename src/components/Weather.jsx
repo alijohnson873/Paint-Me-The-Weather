@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import styles from "./Weather.module.scss";
 
 import scream from "../images/scream.jpg";
-// import turnerClearSky from "../images/turnerclearsky.jpg";
 import goyenCloud from "../images/goyencloud.jpg";
 import turnerStorm from "../images/tunerstorm.jpg";
 import summer from "../images/sueratsummer.png";
 import snow from "../images/janjacobSnow.jpg";
-// import tempest from "../images/tempest.jpg";
-// import goghSun from "../images/vgoghsun.jpg";
 import rain from "../images/magritte.jpeg";
 import goghCloud from "../images/vgogh.jpg";
+// import tempest from "../images/tempest.jpg";
+// import goghSun from "../images/vgoghsun.jpg";
+// import turnerClearSky from "../images/turnerclearsky.jpg";
 
 class Weather extends Component {
   state = {
@@ -20,7 +20,8 @@ class Weather extends Component {
     city: "",
     cityInput: "",
     country: "",
-    countryInput: ""
+    countryInput: "",
+    error: ""
   };
 
   handleChangeCity = event => {
@@ -49,9 +50,7 @@ class Weather extends Component {
 
   fetchApi = () => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city},${
-        this.state.country
-      }&appid=6df8b6decaded2790dd9bbf48af08d3a`
+      `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city},${this.state.country}&appid=6df8b6decaded2790dd9bbf48af08d3a`
     )
       .then(res => res.json())
       .then(data =>
@@ -66,7 +65,7 @@ class Weather extends Component {
           console.log(data.main.temp)
         )
       )
-      .catch(error => this.setState({ weatherMain: "Error" }));
+      .catch(error => this.setState({ weatherMain: "Error", error: "Error" }));
   };
 
   convertTempUnit = k => {
@@ -96,8 +95,10 @@ class Weather extends Component {
   };
 
   render() {
-    // console.log(this.conditionalPaintingBackground());
     const displayWeather = this.state.city ? styles.mainText : styles.noText;
+
+    // const displayError =
+    // this.state.error ? styles.mainText : styles.noText;
 
     return (
       <section
@@ -129,6 +130,10 @@ class Weather extends Component {
           </h3>
           <h2 />
         </article>
+        {/* <article className={displayWeather}>
+          <h3>ERROR</h3>
+          <h2 />
+        </article> */}
       </section>
     );
   }

@@ -2,9 +2,13 @@
   display: none;
 }
 
+h1 {
+  font-size: 60px;
+}
+
 .mainText {
   h3 {
-    font-size: 20px;
+    font-size: 32px;
   }
 
   h2 {
@@ -18,7 +22,7 @@ section {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 85vh;
+  height: 80vh;
   width: 70vw;
   padding: 60px;
   text-align: center;
@@ -30,13 +34,13 @@ section {
 input {
   border: 2px solid white;
   margin: 20px;
-  padding: 5px;
+  padding: 10px;
   background: transparent;
   opacity: 0.9;
   color: white;
   border-radius: 8px;
   &::placeholder {
     color: white;
-    font-size: 13px;
+    font-size: 18px;
   }
 }
